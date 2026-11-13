@@ -1259,5 +1259,595 @@
     "posicao": 3,
     "lista_texto": "",
     "imagem": "assets/img/decklists/2026-10-31-5-torneio-pokemon-tcg-glc-2026-3-davi-lopes.jpg?v=20261105144421"
+  },
+  {
+    "evento_id": "2026-05-31-1-torneio-pokemon-tcg-glc-2026",
+    "jogador_id": "kaio-macedo",
+    "posicao": 3,
+    "lista_texto": "",
+    "imagem": "",
+    "cartas": [
+      {
+        "qtd": 1,
+        "nome": "Binacle",
+        "colecao": "POR",
+        "numero": "42",
+        "categoria": "Pokémon",
+        "id": "me03-042",
+        "img": "https://assets.tcgdex.net/en/me/me03/042/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Basic"
+      },
+      {
+        "qtd": 1,
+        "nome": "Barbaracle",
+        "colecao": "POR",
+        "numero": "43",
+        "categoria": "Pokémon",
+        "id": "me03-043",
+        "img": "https://assets.tcgdex.net/en/me/me03/043/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Stage1",
+        "evolui_de": "Binacle"
+      },
+      {
+        "qtd": 1,
+        "nome": "Riolu",
+        "colecao": "UPR",
+        "numero": "66",
+        "categoria": "Pokémon",
+        "id": "sm5-66",
+        "img": "https://assets.tcgdex.net/en/sm/sm5/66/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Basic"
+      },
+      {
+        "qtd": 1,
+        "nome": "Lucario",
+        "colecao": "SVI",
+        "numero": "114",
+        "categoria": "Pokémon",
+        "id": "sv01-114",
+        "img": "https://assets.tcgdex.net/en/sv/sv01/114/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Stage1",
+        "evolui_de": "Riolu"
+      },
+      {
+        "qtd": 1,
+        "nome": "Tyrunt",
+        "colecao": "FLI",
+        "numero": "68",
+        "categoria": "Pokémon",
+        "id": "sm6-68",
+        "img": "https://assets.tcgdex.net/en/sm/sm6/68/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Stage1",
+        "evolui_de": "Unidentified Fossil"
+      },
+      {
+        "qtd": 1,
+        "nome": "Tyrantrum",
+        "colecao": "POR",
+        "numero": "45",
+        "categoria": "Pokémon",
+        "id": "me03-045",
+        "img": "https://assets.tcgdex.net/en/me/me03/045/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Stage2",
+        "evolui_de": "Tyrunt"
+      },
+      {
+        "qtd": 1,
+        "nome": "Sudowoodo",
+        "colecao": "BKP",
+        "numero": "67",
+        "categoria": "Pokémon",
+        "id": "xy9-67",
+        "img": "https://assets.tcgdex.net/en/xy/xy9/67/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Basic"
+      },
+      {
+        "qtd": 1,
+        "nome": "Solrock",
+        "colecao": "MEG",
+        "numero": "75",
+        "categoria": "Pokémon",
+        "id": "me01-075",
+        "img": "https://assets.tcgdex.net/en/me/me01/075/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Basic"
+      },
+      {
+        "qtd": 1,
+        "nome": "Okidogi",
+        "colecao": "PRE",
+        "numero": "57",
+        "categoria": "Pokémon",
+        "id": "sv08.5-057",
+        "img": "https://assets.tcgdex.net/en/sv/sv08.5/057/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Basic"
+      },
+      {
+        "qtd": 1,
+        "nome": "Terrakion",
+        "colecao": "WHT",
+        "numero": "54",
+        "categoria": "Pokémon",
+        "id": "sv10.5w-054",
+        "img": "https://assets.tcgdex.net/en/sv/sv10.5w/054/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Basic"
+      },
+      {
+        "qtd": 1,
+        "nome": "Lunatone",
+        "colecao": "ASC",
+        "numero": "105",
+        "categoria": "Pokémon",
+        "id": "me02.5-105",
+        "img": "https://assets.tcgdex.net/en/me/me02.5/105/low.webp",
+        "tipos": [
+          "Fighting"
+        ],
+        "estagio": "Basic"
+      },
+      {
+        "qtd": 1,
+        "nome": "Tarragon",
+        "colecao": "POR",
+        "numero": "85",
+        "categoria": "Treinador",
+        "id": "me03-085",
+        "img": "https://assets.tcgdex.net/en/me/me03/085/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Teammates",
+        "colecao": "PRC",
+        "numero": "141",
+        "categoria": "Treinador",
+        "id": "xy5-141",
+        "img": "https://assets.tcgdex.net/en/xy/xy5/141/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Raihan",
+        "colecao": "CRZ",
+        "numero": "140",
+        "categoria": "Treinador",
+        "id": "swsh12.5-140",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh12.5/140/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Lillie's Determination",
+        "colecao": "ASC",
+        "numero": "192",
+        "categoria": "Treinador",
+        "id": "me02.5-192",
+        "img": "https://assets.tcgdex.net/en/me/me02.5/192/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Arven",
+        "colecao": "OBF",
+        "numero": "186",
+        "categoria": "Treinador",
+        "id": "sv03-186",
+        "img": "https://assets.tcgdex.net/en/sv/sv03/186/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Guzma",
+        "colecao": "BUS",
+        "numero": "115",
+        "categoria": "Treinador",
+        "id": "sm3-115",
+        "img": "https://assets.tcgdex.net/en/sm/sm3/115/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Guzma & Hala",
+        "colecao": "CEC",
+        "numero": "193",
+        "categoria": "Treinador",
+        "id": "sm12-193",
+        "img": "https://assets.tcgdex.net/en/sm/sm12/193/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Korrina",
+        "colecao": "FFI",
+        "numero": "95",
+        "categoria": "Treinador",
+        "id": "xy3-95",
+        "img": "https://assets.tcgdex.net/en/xy/xy3/95/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Iono",
+        "colecao": "PAF",
+        "numero": "80",
+        "categoria": "Treinador",
+        "id": "sv04.5-080",
+        "img": "https://assets.tcgdex.net/en/sv/sv04.5/080/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Colress's Tenacity",
+        "colecao": "SFA",
+        "numero": "57",
+        "categoria": "Treinador",
+        "id": "sv06.5-057",
+        "img": "https://assets.tcgdex.net/en/sv/sv06.5/057/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Boss's Orders",
+        "colecao": "ASC",
+        "numero": "183",
+        "categoria": "Treinador",
+        "id": "me02.5-183",
+        "img": "https://assets.tcgdex.net/en/me/me02.5/183/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Cynthia & Caitlin",
+        "colecao": "CEC",
+        "numero": "189",
+        "categoria": "Treinador",
+        "id": "sm12-189",
+        "img": "https://assets.tcgdex.net/en/sm/sm12/189/low.webp",
+        "subtipo": "Apoiador"
+      },
+      {
+        "qtd": 1,
+        "nome": "Hisuian Heavy Ball",
+        "colecao": "ASR",
+        "numero": "146",
+        "categoria": "Treinador",
+        "id": "swsh10-146",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh10/146/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Antique Jaw Fossil",
+        "colecao": "POR",
+        "numero": "68",
+        "categoria": "Treinador",
+        "id": "me03-068",
+        "img": "https://assets.tcgdex.net/en/me/me03/068/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Unidentified Fossil",
+        "colecao": "SIT",
+        "numero": "165",
+        "categoria": "Treinador",
+        "id": "swsh12-165",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh12/165/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Energy Retrieval",
+        "colecao": "WHT",
+        "numero": "82",
+        "categoria": "Treinador",
+        "id": "sv10.5w-082",
+        "img": "https://assets.tcgdex.net/en/sv/sv10.5w/082/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "VS Seeker",
+        "colecao": "PHF",
+        "numero": "109",
+        "categoria": "Treinador",
+        "id": "xy4-109",
+        "img": "https://assets.tcgdex.net/en/xy/xy4/109/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Nest Ball",
+        "colecao": "PAF",
+        "numero": "84",
+        "categoria": "Treinador",
+        "id": "sv04.5-084",
+        "img": "https://assets.tcgdex.net/en/sv/sv04.5/084/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Premium Power Pro",
+        "colecao": "ASC",
+        "numero": "199",
+        "categoria": "Treinador",
+        "id": "me02.5-199",
+        "img": "https://assets.tcgdex.net/en/me/me02.5/199/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Field Blower",
+        "colecao": "GRI",
+        "numero": "125",
+        "categoria": "Treinador",
+        "id": "sm2-125",
+        "img": "https://assets.tcgdex.net/en/sm/sm2/125/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Quick Ball",
+        "colecao": "FST",
+        "numero": "237",
+        "categoria": "Treinador",
+        "id": "swsh8-237",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh8/237/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Ultra Ball",
+        "colecao": "ASC",
+        "numero": "213",
+        "categoria": "Treinador",
+        "id": "me02.5-213",
+        "img": "https://assets.tcgdex.net/en/me/me02.5/213/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Fighting Gong",
+        "colecao": "ASC",
+        "numero": "187",
+        "categoria": "Treinador",
+        "id": "me02.5-187",
+        "img": "https://assets.tcgdex.net/en/me/me02.5/187/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Night Stretcher",
+        "colecao": "ASC",
+        "numero": "196",
+        "categoria": "Treinador",
+        "id": "me02.5-196",
+        "img": "https://assets.tcgdex.net/en/me/me02.5/196/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Rescue Stretcher",
+        "colecao": "GRI",
+        "numero": "130",
+        "categoria": "Treinador",
+        "id": "sm2-130",
+        "img": "https://assets.tcgdex.net/en/sm/sm2/130/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Escape Rope",
+        "colecao": "BST",
+        "numero": "125",
+        "categoria": "Treinador",
+        "id": "swsh5-125",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh5/125/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Rare Candy",
+        "colecao": "MEG",
+        "numero": "125",
+        "categoria": "Treinador",
+        "id": "me01-125",
+        "img": "https://assets.tcgdex.net/en/me/me01/125/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Poké Pad",
+        "colecao": "POR",
+        "numero": "81",
+        "categoria": "Treinador",
+        "id": "me03-081",
+        "img": "https://assets.tcgdex.net/en/me/me03/081/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Battle VIP Pass",
+        "colecao": "FST",
+        "numero": "225",
+        "categoria": "Treinador",
+        "id": "swsh8-225",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh8/225/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Fossil Excavation Map",
+        "colecao": "FLI",
+        "numero": "107",
+        "categoria": "Treinador",
+        "id": "sm6-107",
+        "img": "https://assets.tcgdex.net/en/sm/sm6/107/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Evolution Incense",
+        "colecao": "SSH",
+        "numero": "163",
+        "categoria": "Treinador",
+        "id": "swsh1-163",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh1/163/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Tag Call",
+        "colecao": "CEC",
+        "numero": "206",
+        "categoria": "Treinador",
+        "id": "sm12-206",
+        "img": "https://assets.tcgdex.net/en/sm/sm12/206/low.webp",
+        "subtipo": "Item"
+      },
+      {
+        "qtd": 1,
+        "nome": "Muscle Band",
+        "colecao": "XY",
+        "numero": "121",
+        "categoria": "Treinador",
+        "id": "xy1-121",
+        "img": "https://assets.tcgdex.net/en/xy/xy1/121/low.webp",
+        "subtipo": "Ferramenta"
+      },
+      {
+        "qtd": 1,
+        "nome": "Float Stone",
+        "colecao": "PLF",
+        "numero": "99",
+        "categoria": "Treinador",
+        "id": "bw9-99",
+        "img": "https://assets.tcgdex.net/en/bw/bw9/99/low.webp",
+        "subtipo": "Ferramenta"
+      },
+      {
+        "qtd": 1,
+        "nome": "U-Turn Board",
+        "colecao": "UNM",
+        "numero": "211",
+        "categoria": "Treinador",
+        "id": "sm11-211",
+        "img": "https://assets.tcgdex.net/en/sm/sm11/211/low.webp",
+        "subtipo": "Ferramenta"
+      },
+      {
+        "qtd": 1,
+        "nome": "Brooklet Hill",
+        "colecao": "GRI",
+        "numero": "120",
+        "categoria": "Treinador",
+        "id": "sm2-120",
+        "img": "https://assets.tcgdex.net/en/sm/sm2/120/low.webp",
+        "subtipo": "Estádio"
+      },
+      {
+        "qtd": 1,
+        "nome": "Training Court",
+        "colecao": "RCL",
+        "numero": "169",
+        "categoria": "Treinador",
+        "id": "swsh2-169",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh2/169/low.webp",
+        "subtipo": "Estádio"
+      },
+      {
+        "qtd": 1,
+        "nome": "Parallel City",
+        "colecao": "BKT",
+        "numero": "145",
+        "categoria": "Treinador",
+        "id": "xy8-145",
+        "img": "https://assets.tcgdex.net/en/xy/xy8/145/low.webp",
+        "subtipo": "Estádio"
+      },
+      {
+        "qtd": 1,
+        "nome": "Strong Energy",
+        "colecao": "FCO",
+        "numero": "115",
+        "categoria": "Energia",
+        "id": "xy10-115",
+        "img": "https://assets.tcgdex.net/en/xy/xy10/115/low.webp"
+      },
+      {
+        "qtd": 1,
+        "nome": "Aurora Energy",
+        "colecao": "SSH",
+        "numero": "186",
+        "categoria": "Energia",
+        "id": "swsh1-186",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh1/186/low.webp"
+      },
+      {
+        "qtd": 1,
+        "nome": "Rainbow Energy",
+        "colecao": "SUM",
+        "numero": "137",
+        "categoria": "Energia",
+        "id": "sm1-137",
+        "img": "https://assets.tcgdex.net/en/sm/sm1/137/low.webp"
+      },
+      {
+        "qtd": 1,
+        "nome": "Unit Energy FightingDarknessFairy",
+        "colecao": "FLI",
+        "numero": "118",
+        "categoria": "Energia",
+        "id": "sm6-118",
+        "img": "https://assets.tcgdex.net/en/sm/sm6/118/low.webp"
+      },
+      {
+        "qtd": 1,
+        "nome": "Stone Fighting Energy",
+        "colecao": "VIV",
+        "numero": "164",
+        "categoria": "Energia",
+        "id": "swsh4-164",
+        "img": "https://assets.tcgdex.net/en/swsh/swsh4/164/low.webp"
+      },
+      {
+        "qtd": 6,
+        "nome": "Fighting Energy",
+        "colecao": "SVE",
+        "numero": "6",
+        "categoria": "Energia",
+        "id": "sve-006",
+        "basica": true
+      }
+    ]
   }
 ]
