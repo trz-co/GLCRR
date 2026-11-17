@@ -320,22 +320,24 @@ function colocacoesFiltradas(tipoEvento, inicio, fim) {
   return itens;
 }
 
-/* Uma linha por jogador e tipo do deck (quem jogou com dois tipos aparece duas vezes).
+/* Uma linha por jogador e tipo do deck (quem jogou com dois tipos aparece duas vezes) ou, com porJogador,
+   uma linha por jogador somando todos os tipos. tipos: os tipos usados na linha, por ordem alfabética ("" = sem tipo, no fim).
    Ordem: pontos, vitórias, menos derrotas, apelido. Mesmos pontos e mesmo V-D-E dividem a posição. */
-function rankingPontos(tipoEvento, inicio, fim) {
+function rankingPontos(tipoEvento, inicio, fim, porJogador) {
   const linhas = new Map();
   colocacoesFiltradas(tipoEvento, inicio, fim).forEach(({ colocacao: c }) => {
     const tipo = c.tipo_pokemon || "";
-    const k = `${c.jogador_id}|${tipo}`;
-    if (!linhas.has(k)) linhas.set(k, { jogador_id: c.jogador_id, tipo, pontos: 0, v: 0, d: 0, e: 0, eventos: 0 });
+    const k = porJogador ? c.jogador_id : `${c.jogador_id}|${tipo}`;
+    if (!linhas.has(k)) linhas.set(k, { jogador_id: c.jogador_id, tipo: porJogador ? "" : tipo, tipos: [], pontos: 0, v: 0, d: 0, e: 0, eventos: 0 });
     const l = linhas.get(k);
+    if (!l.tipos.includes(tipo)) l.tipos.push(tipo);
     l.v += Number(c.vitorias) || 0;
     l.d += Number(c.derrotas) || 0;
     l.e += Number(c.empates) || 0;
     l.eventos++;
   });
   const lista = [...linhas.values()].map(l => ({
-    ...l, pontos: l.v * PONTOS_RANKING.vitoria + l.e * PONTOS_RANKING.empate + l.d * PONTOS_RANKING.derrota
+    ...l, tipos: l.tipos.sort((a, b) => (!a) - (!b) || a.localeCompare(b, "pt-BR")), pontos: l.v * PONTOS_RANKING.vitoria + l.e * PONTOS_RANKING.empate + l.d * PONTOS_RANKING.derrota
   })).sort((a, b) => b.pontos - a.pontos || b.v - a.v || a.d - b.d
     || nomeOrdem(apelidoDe(a.jogador_id)).localeCompare(nomeOrdem(apelidoDe(b.jogador_id)), "pt-BR") || a.tipo.localeCompare(b.tipo, "pt-BR"));
   lista.forEach((l, i) => {

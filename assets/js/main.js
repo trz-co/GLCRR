@@ -164,10 +164,9 @@ const PAGES = {
       .filter(d => DATA_ISO.test(d || "")).map(d => d.slice(0, 4))])].sort().reverse();
     const tipos = (DADOS.config.tipos_evento || []).filter(t => typeof t === "string" && t);
     return interna(`<div><span class="eyebrow">Temporada ${esc(temporada)}</span><h1>Ranking</h1></div>
-      <p class="lead">Pontos por partida: vitória 3, empate 1, derrota 0. Quem jogou com mais de um tipo de deck aparece uma vez por tipo.</p>
       <div class="filtros" role="group" aria-label="Período">${anos.map(a => chip("rk-periodo", a, `Temporada ${a}`, a === temporada)).join("")}${chip("rk-periodo", "", "Tudo", false)}</div>
       <div class="filtros" role="group" aria-label="Tipo de evento">${chip("rk-evento", "", "Todos os eventos", true)}${tipos.map(t => chip("rk-evento", t, t, false)).join("")}</div>
-      <div class="ranking-conteudo">${htmlRanking("", temporada)}</div>`);
+      <div class="ranking-conteudo">${htmlRanking("", temporada, "")}</div>`);
   },
 
   /* Aba Decks: estatísticas por tipo do deck e melhores colocações (Top 3 de todos os eventos).
@@ -444,18 +443,23 @@ function htmlEstatCartas(periodo) {
     <p class="nota">Listas: em quantas listas do Top 3 a carta aparece (edições diferentes contam como a mesma carta). Energia Básica fica de fora. Só entram as listas cadastradas carta a carta no painel.</p>`;
 }
 
-/* Conteúdo da aba Ranking para o tipo de evento ("" = todos) e o período (ano ou "" = tudo) */
-function htmlRanking(tipoEvento, periodo) {
+/* Conteúdo da aba Ranking para o tipo de evento ("" = todos), o período (ano ou "" = tudo)
+   e o agrupamento da pontuação ("" = por jogador e tipo; "jogador" = total do jogador com todos os tipos) */
+function htmlRanking(tipoEvento, periodo, agrupar) {
   const { inicio, fim } = periodoDatas(periodo);
-  const linhas = rankingPontos(tipoEvento, inicio, fim);
+  const porJogador = agrupar === "jogador";
+  const linhas = rankingPontos(tipoEvento, inicio, fim, porJogador);
   if (!linhas.length) return vazio("Nenhum resultado com esse filtro.", "Escolha outro tipo de evento ou período.");
+  const icones = tipos => tipos.length ? tipos.map(t => t ? htmlTipo(t) : `<small class="muted">sem tipo</small>`).join("") : `<small class="muted">sem tipo</small>`;
+  const chip = (valor, rotulo) => `<button type="button" class="chip-filtro" data-filtro="rk-agrupar" data-valor="${valor}" aria-pressed="${agrupar === valor}">${rotulo}</button>`;
   const titulos = titulosPorJogador(tipoEvento, inicio, fim);
   return `<section class="decks-sec" aria-labelledby="rk-titulo">
       <h2 id="rk-titulo">Pontuação</h2>
+      <div class="filtros" role="group" aria-label="Agrupar a pontuação">${chip("", "Por tipo de deck")}${chip("jogador", "Total do jogador")}</div>
       <div class="table-box" role="region" aria-label="Ranking por pontos" tabindex="0"><table class="tab-est tab-ranking">
         <thead><tr><th>Pos.</th><th>Jogador e tipo</th><th>Pontos</th><th>V-D-E</th><th>Eventos</th></tr></thead>
-        <tbody>${linhas.map(l => `<tr><td>${l.posicao}º</td><td><span class="tipo-linha"><a href="${linkPerfil(l.jogador_id)}">${esc(apelidoDe(l.jogador_id))}</a>${l.tipo ? htmlTipo(l.tipo) : `<small class="muted">sem tipo</small>`}</span></td><td><b>${l.pontos}</b></td><td>${l.v}-${l.d}-${l.e}</td><td>${l.eventos}</td></tr>`).join("")}</tbody></table></div>
-      <p class="nota">Pontos: vitória 3, empate 1, derrota 0; o bye conta como vitória. Desempate: mais vitórias, depois menos derrotas. Mesmos pontos e mesmo V-D-E dividem a posição.</p>
+        <tbody>${linhas.map(l => `<tr><td>${l.posicao}º</td><td><span class="tipo-linha"><a href="${linkPerfil(l.jogador_id)}">${esc(apelidoDe(l.jogador_id))}</a>${icones(l.tipos)}</span></td><td><b>${l.pontos}</b></td><td>${l.v}-${l.d}-${l.e}</td><td>${l.eventos}</td></tr>`).join("")}</tbody></table></div>
+      <p class="nota">Pontos: vitória 3, empate 1, derrota 0; o bye conta como vitória. Desempate: mais vitórias, depois menos derrotas.${porJogador ? "" : " Quem jogou com mais de um tipo aparece uma vez por tipo."} Mesmos pontos e mesmo V-D-E dividem a posição.</p>
     </section>
     <section class="decks-sec" aria-labelledby="tit-titulo">
       <h2 id="tit-titulo">1º lugares</h2>
@@ -470,7 +474,7 @@ function aplicarFiltroRanking(chip) {
   const pagina = chip.closest(".page");
   pagina.querySelectorAll(`[data-filtro="${chip.dataset.filtro}"]`).forEach(b => b.setAttribute("aria-pressed", String(b === chip)));
   const ativo = grupo => pagina.querySelector(`[data-filtro="${grupo}"][aria-pressed="true"]`)?.dataset.valor || "";
-  pagina.querySelector(".ranking-conteudo").innerHTML = htmlRanking(ativo("rk-evento"), ativo("rk-periodo"));
+  pagina.querySelector(".ranking-conteudo").innerHTML = htmlRanking(ativo("rk-evento"), ativo("rk-periodo"), ativo("rk-agrupar"));
 }
 
 /* Filtros da aba Decks: um chip ativo por grupo. O período refaz a tabela e vale também para a lista; o tipo vale só para a lista */

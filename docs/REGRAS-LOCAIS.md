@@ -22,6 +22,7 @@ Definida em 17/11/2026 (regra do ranking do Torneio Anual).
 - Pontos por partida: vitória 3, empate 1, derrota 0.
 - Pontuação geral, com filtro por tipo de evento (todos, Torneio Anual, Amistoso, Encontro da comunidade) e por período (temporada ou tudo).
 - Cada linha do ranking é um jogador com um tipo de deck: quem jogou com outro tipo aparece de novo, em outra linha.
+- Opção "Total do jogador": uma linha por jogador, somando todos os tipos de deck (17/11/2026).
 - Lista de 1º lugares por jogador, com os mesmos filtros e a quantidade por tipo de deck (ex.: Psíquico (3), Fogo (1)), mostrada como o ícone do tipo com a quantidade num selo.
 
 Complementos confirmados em 17/11/2026:
