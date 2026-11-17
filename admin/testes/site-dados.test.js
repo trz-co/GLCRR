@@ -236,3 +236,33 @@ test("listas gravadas: ordem por evolução e por tipo de Treinador", () => {
   assert.deepStrictEqual(sub, [...sub].sort((a, b) => ["Apoiador", "Item", "Ferramenta", "Estádio"].indexOf(a) - ["Apoiador", "Item", "Ferramenta", "Estádio"].indexOf(b)));
   assert.strictEqual(nomes[2][nomes[2].length - 1], "Psychic Energy");
 });
+
+test("ranking: vitória 3, empate 1, derrota 0; uma linha por jogador e tipo; filtros de evento e período", () => {
+  site(`DADOS.jogadores = ${JSON.stringify([{ id: "ana", apelido: "Ana" }, { id: "bia", apelido: "Bia" }, { id: "caio", apelido: "Caio" }])}`);
+  site(`DADOS.eventos = ${JSON.stringify([
+    { id: "e1", data: "2026-01-10", tipo: "Torneio Anual" },
+    { id: "e2", data: "2026-02-10", tipo: "Amistoso" },
+    { id: "e3", data: "2025-12-10", tipo: "Torneio Anual" }
+  ])}`);
+  site(`DADOS.resultados = ${JSON.stringify([
+    { evento_id: "e1", colocacoes: [
+      { posicao: 1, jogador_id: "ana", vitorias: 3, derrotas: 0, empates: 0, tipo_pokemon: "Psíquico" },
+      { posicao: 2, jogador_id: "bia", vitorias: 2, derrotas: 0, empates: 1, tipo_pokemon: "Fogo" },
+      { posicao: 3, jogador_id: "caio", vitorias: 0, derrotas: 3, empates: 0 }] },
+    { evento_id: "e2", colocacoes: [
+      { posicao: 1, jogador_id: "ana", vitorias: 2, derrotas: 1, empates: 0, tipo_pokemon: "Fogo" },
+      { posicao: 2, jogador_id: "bia", vitorias: 2, derrotas: 1, empates: 0, tipo_pokemon: "Fogo" }] },
+    { evento_id: "e3", colocacoes: [{ posicao: 1, jogador_id: "ana", vitorias: 1, derrotas: 0, empates: 0, tipo_pokemon: "Psíquico" }] },
+    { evento_id: "fantasma", colocacoes: [{ posicao: 1, jogador_id: "caio", vitorias: 9, derrotas: 0, empates: 0 }] }
+  ])}`);
+  const rk = (t, i, f) => JSON.parse(site(`JSON.stringify(rankingPontos(${JSON.stringify(t)}, ${JSON.stringify(i)}, ${JSON.stringify(f)}))`));
+  const todos = rk("", "2026-01-01", "2026-12-31");
+  assert.deepStrictEqual(todos.map(l => [l.posicao, l.jogador_id, l.tipo, l.pontos]), [
+    [1, "bia", "Fogo", 13], [2, "ana", "Psíquico", 9], [3, "ana", "Fogo", 6], [4, "caio", "", 0]]);
+  assert.strictEqual(todos[0].eventos, 2);
+  assert.deepStrictEqual(rk("Amistoso", "", "9999-12-31").map(l => [l.posicao, l.jogador_id]), [[1, "ana"], [1, "bia"]]);
+  assert.deepStrictEqual(rk("Torneio Anual", "", "9999-12-31").map(l => [l.jogador_id, l.pontos]), [["ana", 12], ["bia", 7], ["caio", 0]]);
+  const tit = JSON.parse(site(`JSON.stringify(titulosPorJogador("", "", "9999-12-31"))`));
+  assert.deepStrictEqual(tit, [{ jogador_id: "ana", total: 3, tipos: [{ tipo: "Psíquico", n: 2 }, { tipo: "Fogo", n: 1 }] }]);
+  assert.deepStrictEqual(JSON.parse(site(`JSON.stringify(titulosPorJogador("Amistoso", "2026-03-01", "2026-12-31"))`)), []);
+});

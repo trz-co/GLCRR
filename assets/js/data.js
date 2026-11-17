@@ -306,6 +306,62 @@ function estatisticasCartas(inicio, fim) {
   return { listas, cartas: lista };
 }
 
+/* Ranking (regra de 17/11/2026, docs/REGRAS-LOCAIS.md): vitória 3, empate 1, derrota 0, a partir do V-D-E de
+   resultados.json (o bye já entra como vitória). Filtros: tipo de evento ("" = todos) e período (inicio..fim). */
+const PONTOS_RANKING = { vitoria: 3, empate: 1, derrota: 0 };
+function colocacoesFiltradas(tipoEvento, inicio, fim) {
+  const itens = [];
+  DADOS.resultados.forEach(r => {
+    const ev = eventoPorId(r.evento_id);
+    if (!ev || !DATA_ISO.test(ev.data || "") || ev.data < inicio || ev.data > fim) return;
+    if (tipoEvento && ev.tipo !== tipoEvento) return;
+    (r.colocacoes || []).forEach(c => itens.push({ evento: ev, colocacao: c }));
+  });
+  return itens;
+}
+
+/* Uma linha por jogador e tipo do deck (quem jogou com dois tipos aparece duas vezes).
+   Ordem: pontos, vitórias, menos derrotas, apelido. Mesmos pontos e mesmo V-D-E dividem a posição. */
+function rankingPontos(tipoEvento, inicio, fim) {
+  const linhas = new Map();
+  colocacoesFiltradas(tipoEvento, inicio, fim).forEach(({ colocacao: c }) => {
+    const tipo = c.tipo_pokemon || "";
+    const k = `${c.jogador_id}|${tipo}`;
+    if (!linhas.has(k)) linhas.set(k, { jogador_id: c.jogador_id, tipo, pontos: 0, v: 0, d: 0, e: 0, eventos: 0 });
+    const l = linhas.get(k);
+    l.v += Number(c.vitorias) || 0;
+    l.d += Number(c.derrotas) || 0;
+    l.e += Number(c.empates) || 0;
+    l.eventos++;
+  });
+  const lista = [...linhas.values()].map(l => ({
+    ...l, pontos: l.v * PONTOS_RANKING.vitoria + l.e * PONTOS_RANKING.empate + l.d * PONTOS_RANKING.derrota
+  })).sort((a, b) => b.pontos - a.pontos || b.v - a.v || a.d - b.d
+    || nomeOrdem(apelidoDe(a.jogador_id)).localeCompare(nomeOrdem(apelidoDe(b.jogador_id)), "pt-BR") || a.tipo.localeCompare(b.tipo, "pt-BR"));
+  lista.forEach((l, i) => {
+    const ant = lista[i - 1];
+    l.posicao = ant && ant.pontos === l.pontos && ant.v === l.v && ant.d === l.d && ant.e === l.e ? ant.posicao : i + 1;
+  });
+  return lista;
+}
+
+/* 1º lugares por jogador, com quantos de cada tipo do deck. Ordem: total, apelido; tipos por quantidade e nome. */
+function titulosPorJogador(tipoEvento, inicio, fim) {
+  const jogadores = new Map();
+  colocacoesFiltradas(tipoEvento, inicio, fim).filter(x => Number(x.colocacao.posicao) === 1).forEach(({ colocacao: c }) => {
+    if (!jogadores.has(c.jogador_id)) jogadores.set(c.jogador_id, { jogador_id: c.jogador_id, total: 0, tipos: new Map() });
+    const j = jogadores.get(c.jogador_id);
+    const tipo = c.tipo_pokemon || "";
+    j.total++;
+    j.tipos.set(tipo, (j.tipos.get(tipo) || 0) + 1);
+  });
+  return [...jogadores.values()].map(j => ({
+    jogador_id: j.jogador_id, total: j.total,
+    tipos: [...j.tipos].map(([tipo, n]) => ({ tipo, n }))
+      .sort((a, b) => (!a.tipo) - (!b.tipo) || b.n - a.n || a.tipo.localeCompare(b.tipo, "pt-BR"))
+  })).sort((a, b) => b.total - a.total || nomeOrdem(apelidoDe(a.jogador_id)).localeCompare(nomeOrdem(apelidoDe(b.jogador_id)), "pt-BR"));
+}
+
 function eventosSeparados() {
   const hoje = hojeBV();
   return {
