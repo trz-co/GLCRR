@@ -461,7 +461,7 @@ function htmlRanking(tipoEvento, periodo) {
       <h2 id="tit-titulo">1º lugares</h2>
       ${titulos.length ? `<ol class="titulos">${titulos.map(t => `<li>
         <span class="tit-quem"><a href="${linkPerfil(t.jogador_id)}">${esc(apelidoDe(t.jogador_id))}</a> <b>${t.total}</b></span>
-        <span class="tit-tipos">${t.tipos.map(x => `<span class="tipo-linha">${x.tipo ? htmlTipo(x.tipo, { comTexto: true }) : `<span class="muted">Não informado</span>`} <span class="tit-n">(${x.n})</span></span>`).join("")}</span>
+        <span class="tit-tipos">${t.tipos.map(x => `<span class="tit-tipo">${x.tipo ? htmlTipo(x.tipo) : `<span class="tit-sem" title="Tipo não informado">?</span>`}<span class="tit-n" title="${x.n} ${x.n === 1 ? "vitória" : "vitórias"}">${x.n}</span></span>`).join("")}</span>
       </li>`).join("")}</ol>` : `<p class="nota">Nenhum 1º lugar com esse filtro.</p>`}
     </section>`;
 }

@@ -22,9 +22,9 @@ Definida em 17/11/2026 (regra do ranking do Torneio Anual).
 - Pontos por partida: vitória 3, empate 1, derrota 0.
 - Pontuação geral, com filtro por tipo de evento (todos, Torneio Anual, Amistoso, Encontro da comunidade) e por período (temporada ou tudo).
 - Cada linha do ranking é um jogador com um tipo de deck: quem jogou com outro tipo aparece de novo, em outra linha.
-- Lista de 1º lugares por jogador, com os mesmos filtros e a quantidade por tipo de deck (ex.: Psíquico (3), Fogo (1)).
+- Lista de 1º lugares por jogador, com os mesmos filtros e a quantidade por tipo de deck (ex.: Psíquico (3), Fogo (1)), mostrada como o ícone do tipo com a quantidade num selo.
 
-Pontos ainda em aberto (adotados provisoriamente pelo site até a decisão):
+Complementos confirmados em 17/11/2026:
 
 - bye conta como vitória (3 pontos), como já acontece no V-D-E publicado;
 - drop: valem só as partidas jogadas;
