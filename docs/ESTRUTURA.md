@@ -33,7 +33,7 @@ No Calendário, cada evento realizado com resultados tem o botão "Resultados". 
 
 ## Patrocinadores
 
-No fim do Início, `htmlPatrocinadores()` (`main.js`) mostra uma grade de logos (2 por linha no celular, 4 no computador), cada uma com link para a página do patrocinador em nova aba (`rel="noopener sponsored"`). A placa de cada logo é branca nos dois modos, porque as logos são feitas para fundo claro.
+No fim do Início, `htmlPatrocinadores()` (`main.js`) mostra uma grade de logos (2 por linha no celular, 4 no computador, centralizada: a linha incompleta fica no meio), cada uma com link para a página do patrocinador em nova aba (`rel="noopener sponsored"`). A placa de cada logo é branca nos dois modos, porque as logos são feitas para fundo claro.
 
 - Dados em `data/patrocinadores.json`: lista de `{ nome, url, logo }`, na ordem de exibição. `url` passa por `urlSegura()` (sem link http(s), o patrocinador não aparece); `logo` passa por `LOGO_PATROCINADOR_VALIDA` (`data.js`). Sem logo, ou com logo que não carrega (`data-falha="nome"`), aparece o nome em texto.
 - Logos em `assets/img/patrocinadores/<slug>.webp` (ou .png/.jpg/.svg): fundo transparente quando possível, até 480 × 240 px, sem metadados. Entram por PR, não pelo painel.
