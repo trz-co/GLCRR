@@ -155,22 +155,19 @@ const PAGES = {
         : vazio("Nenhum evento realizado.", "")}`);
   },
 
-  /* Sem regra de pontuação definida: mostra participações e colocações, sem pontos */
+  /* Ranking com pontos (vitória 3, empate 1, derrota 0) e 1º lugares por jogador.
+     Filtros: tipo de evento e período (temporada ou tudo). Trocar o filtro não muda a rota (aplicarFiltroRanking). */
   ranking() {
     const temporada = String(DADOS.config.temporada || hojeBV().slice(0, 4));
-    const linhas = DADOS.jogadores
-      .map(j => ({ j, s: estatisticasDe(j.id, temporada) }))
-      .filter(x => x.s.eventos > 0)
-      .sort((a, b) => a.s.melhor - b.s.melhor || b.s.top3 - a.s.top3 || b.s.eventos - a.s.eventos)
-      .map(({ j, s }) => `<tr><td><a href="${linkPerfil(j.id)}">${esc(j.apelido)}</a></td><td>${s.eventos}</td><td>${s.top3}</td><td>${melhorTxt(s.melhor)}</td><td>${s.v}-${s.d}-${s.e}</td></tr>`)
-      .join("");
+    const chip = (grupo, valor, rotulo, ativo) => `<button type="button" class="chip-filtro" data-filtro="${grupo}" data-valor="${esc(valor)}" aria-pressed="${ativo}">${esc(rotulo)}</button>`;
+    const anos = [...new Set([temporada, ...DADOS.resultados.map(r => (eventoPorId(r.evento_id) || {}).data)
+      .filter(d => DATA_ISO.test(d || "")).map(d => d.slice(0, 4))])].sort().reverse();
+    const tipos = (DADOS.config.tipos_evento || []).filter(t => typeof t === "string" && t);
     return interna(`<div><span class="eyebrow">Temporada ${esc(temporada)}</span><h1>Ranking</h1></div>
-      <p class="lead">A temporada vai de janeiro a dezembro. Enquanto a regra de pontuação não é definida, esta página mostra participações e colocações por evento.</p>
-      ${linhas ? "" : vazio("Nenhum resultado registrado ainda.", "Os resultados de cada evento entram aqui depois de conferidos pela organização.")}
-      <div class="table-box" role="region" aria-label="Tabela de participações" tabindex="0">
-        <table><thead><tr><th>Jogador</th><th>Eventos</th><th>Top 3</th><th>Melhor colocação</th><th>V-D-E</th></tr></thead>
-        <tbody>${linhas || `<tr><td colspan="5" class="muted">Sem dados nesta temporada</td></tr>`}</tbody></table>
-      </div>`);
+      <p class="lead">Pontos por partida: vitória 3, empate 1, derrota 0. Quem jogou com mais de um tipo de deck aparece uma vez por tipo.</p>
+      <div class="filtros" role="group" aria-label="Período">${anos.map(a => chip("rk-periodo", a, `Temporada ${a}`, a === temporada)).join("")}${chip("rk-periodo", "", "Tudo", false)}</div>
+      <div class="filtros" role="group" aria-label="Tipo de evento">${chip("rk-evento", "", "Todos os eventos", true)}${tipos.map(t => chip("rk-evento", t, t, false)).join("")}</div>
+      <div class="ranking-conteudo">${htmlRanking("", temporada)}</div>`);
   },
 
   /* Aba Decks: estatísticas por tipo do deck e melhores colocações (Top 3 de todos os eventos).
@@ -447,6 +444,35 @@ function htmlEstatCartas(periodo) {
     <p class="nota">Listas: em quantas listas do Top 3 a carta aparece (edições diferentes contam como a mesma carta). Energia Básica fica de fora. Só entram as listas cadastradas carta a carta no painel.</p>`;
 }
 
+/* Conteúdo da aba Ranking para o tipo de evento ("" = todos) e o período (ano ou "" = tudo) */
+function htmlRanking(tipoEvento, periodo) {
+  const { inicio, fim } = periodoDatas(periodo);
+  const linhas = rankingPontos(tipoEvento, inicio, fim);
+  if (!linhas.length) return vazio("Nenhum resultado com esse filtro.", "Escolha outro tipo de evento ou período.");
+  const titulos = titulosPorJogador(tipoEvento, inicio, fim);
+  return `<section class="decks-sec" aria-labelledby="rk-titulo">
+      <h2 id="rk-titulo">Pontuação</h2>
+      <div class="table-box" role="region" aria-label="Ranking por pontos" tabindex="0"><table class="tab-est tab-ranking">
+        <thead><tr><th>Pos.</th><th>Jogador e tipo</th><th>Pontos</th><th>V-D-E</th><th>Eventos</th></tr></thead>
+        <tbody>${linhas.map(l => `<tr><td>${l.posicao}º</td><td><span class="tipo-linha"><a href="${linkPerfil(l.jogador_id)}">${esc(apelidoDe(l.jogador_id))}</a>${l.tipo ? htmlTipo(l.tipo) : `<small class="muted">sem tipo</small>`}</span></td><td><b>${l.pontos}</b></td><td>${l.v}-${l.d}-${l.e}</td><td>${l.eventos}</td></tr>`).join("")}</tbody></table></div>
+      <p class="nota">Pontos: vitória 3, empate 1, derrota 0; o bye conta como vitória. Desempate: mais vitórias, depois menos derrotas. Mesmos pontos e mesmo V-D-E dividem a posição.</p>
+    </section>
+    <section class="decks-sec" aria-labelledby="tit-titulo">
+      <h2 id="tit-titulo">1º lugares</h2>
+      ${titulos.length ? `<ol class="titulos">${titulos.map(t => `<li>
+        <span class="tit-quem"><a href="${linkPerfil(t.jogador_id)}">${esc(apelidoDe(t.jogador_id))}</a> <b>${t.total}</b></span>
+        <span class="tit-tipos">${t.tipos.map(x => `<span class="tipo-linha">${x.tipo ? htmlTipo(x.tipo, { comTexto: true }) : `<span class="muted">Não informado</span>`} <span class="tit-n">(${x.n})</span></span>`).join("")}</span>
+      </li>`).join("")}</ol>` : `<p class="nota">Nenhum 1º lugar com esse filtro.</p>`}
+    </section>`;
+}
+
+function aplicarFiltroRanking(chip) {
+  const pagina = chip.closest(".page");
+  pagina.querySelectorAll(`[data-filtro="${chip.dataset.filtro}"]`).forEach(b => b.setAttribute("aria-pressed", String(b === chip)));
+  const ativo = grupo => pagina.querySelector(`[data-filtro="${grupo}"][aria-pressed="true"]`)?.dataset.valor || "";
+  pagina.querySelector(".ranking-conteudo").innerHTML = htmlRanking(ativo("rk-evento"), ativo("rk-periodo"));
+}
+
 /* Filtros da aba Decks: um chip ativo por grupo. O período refaz a tabela e vale também para a lista; o tipo vale só para a lista */
 function aplicarFiltroDecks(chip) {
   const pagina = chip.closest(".page");
@@ -467,10 +493,10 @@ function aplicarFiltroDecks(chip) {
   pagina.querySelector(".decks-vazio").hidden = visiveis > 0;
 }
 
-/* Cliques em botões de resultado/decklist, filtros da aba Decks e fechamento do pop-up */
+/* Cliques em botões de resultado/decklist, filtros das abas Ranking e Decks e fechamento do pop-up */
 document.addEventListener("click", e => {
   const filtro = e.target.closest("[data-filtro]");
-  if (filtro) { aplicarFiltroDecks(filtro); return; }
+  if (filtro) { (filtro.dataset.filtro.startsWith("rk-") ? aplicarFiltroRanking : aplicarFiltroDecks)(filtro); return; }
   const copiar = e.target.closest("[data-copiar]");
   if (copiar) { copiarLista(copiar); return; }
   const alvo = e.target.closest("[data-resultados],[data-decklist],[data-fechar]");

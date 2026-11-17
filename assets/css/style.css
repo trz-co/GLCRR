@@ -289,3 +289,14 @@ td a{font-weight:800}
 
 footer{border-top:1px solid var(--line);padding-block:20px 28px;font-size:.82rem;color:var(--muted)}
 footer p{margin:0 0 6px;max-width:70ch}
+
+/* Aba Ranking: pontuação (jogador e tipo alinhados à esquerda) e lista de 1º lugares por jogador */
+.ranking-conteudo{display:grid;gap:28px}
+.tab-ranking th:nth-child(2),.tab-ranking td:nth-child(2){text-align:left}
+.tab-ranking td{font-variant-numeric:tabular-nums}
+.titulos{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.titulos li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 14px;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.tit-quem{display:inline-flex;align-items:center;gap:8px;font-weight:700}
+.tit-quem b{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 6px;border-radius:999px;background:var(--ouro);color:#1a1a1a;font-variant-numeric:tabular-nums}
+.tit-tipos{display:flex;flex-wrap:wrap;gap:6px 12px}
+.tit-n{font-variant-numeric:tabular-nums;color:var(--muted)}
