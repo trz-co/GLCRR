@@ -262,6 +262,10 @@ test("ranking: vitória 3, empate 1, derrota 0; uma linha por jogador e tipo; fi
   assert.strictEqual(todos[0].eventos, 2);
   assert.deepStrictEqual(rk("Amistoso", "", "9999-12-31").map(l => [l.posicao, l.jogador_id]), [[1, "ana"], [1, "bia"]]);
   assert.deepStrictEqual(rk("Torneio Anual", "", "9999-12-31").map(l => [l.jogador_id, l.pontos]), [["ana", 12], ["bia", 7], ["caio", 0]]);
+  const total = JSON.parse(site(`JSON.stringify(rankingPontos("", "2026-01-01", "2026-12-31", true))`));
+  assert.deepStrictEqual(total.map(l => [l.posicao, l.jogador_id, l.tipos, l.pontos, l.eventos]), [
+    [1, "ana", ["Fogo", "Psíquico"], 15, 2], [2, "bia", ["Fogo"], 13, 2], [3, "caio", [""], 0, 1]]);
+  assert.deepStrictEqual(todos.map(l => l.tipos), [["Fogo"], ["Psíquico"], ["Fogo"], [""]]);
   const tit = JSON.parse(site(`JSON.stringify(titulosPorJogador("", "", "9999-12-31"))`));
   assert.deepStrictEqual(tit, [{ jogador_id: "ana", total: 3, tipos: [{ tipo: "Psíquico", n: 2 }, { tipo: "Fogo", n: 1 }] }]);
   assert.deepStrictEqual(JSON.parse(site(`JSON.stringify(titulosPorJogador("Amistoso", "2026-03-01", "2026-12-31"))`)), []);
