@@ -1,6 +1,6 @@
 # Regras locais — Liga GLC Roraima
 
-Atualizado em 17/11/2026.
+Atualizado em 25/11/2026.
 
 A liga segue as regras oficiais do Gym Leader Challenge (https://gymleaderchallenge.com). As regras abaixo são próprias da liga e prevalecem em caso de conflito.
 
@@ -30,6 +30,15 @@ Complementos confirmados em 17/11/2026:
 - bye conta como vitória (3 pontos), como já acontece no V-D-E publicado;
 - drop: valem só as partidas jogadas;
 - desempate: mais vitórias, depois menos derrotas; mesmos pontos e mesmo V-D-E dividem a posição.
+
+## Premiações anuais (temporada 2027)
+
+Definidas em 25/11/2026, além das premiações normais de cada evento.
+
+- Pontuação: vitória 3, empate 1, derrota 0.
+- Troféu do Campeão: maior pontuação geral da temporada.
+- Insígnia Elite 4: os 4 abaixo do campeão na pontuação geral (2º ao 5º).
+- Insígnia (de tipo): quem pontua melhor em cada tipo de deck.
 
 ## Torneio suíço
 
