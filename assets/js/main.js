@@ -236,11 +236,13 @@ const PAGES = {
       </div>
       <a class="btn btn-line" href="https://gymleaderchallenge.com" target="_blank" rel="noopener">Regras completas em gymleaderchallenge.com</a>
       <h2>Temporada 2027</h2>
+      <p class="lead">A temporada vale o ano todo: cada partida soma pontos no ranking. As premiações reconhecem quem joga com regularidade, quem se destaca em cada tipo e quem vence com tipos diferentes.</p>
       <div class="rules">
         <div class="rule"><span class="k">3 · 1 · 0</span><h3>Pontos por partida</h3><p>Vitória 3, empate 1, derrota 0.</p></div>
         <div class="rule"><span class="k">1º</span><h3>Troféu do Campeão</h3><p>Maior pontuação geral da temporada.</p></div>
         <div class="rule"><span class="k">2º a 5º</span><h3>Insígnia Elite 4</h3><p>Os 4 seguintes na pontuação geral.</p></div>
         <div class="rule"><span class="k">Tipo</span><h3>Insígnia de tipo</h3><p>Maior pontuação em cada tipo de deck.</p></div>
+        <div class="rule"><span class="k">+ tipos</span><h3>Troféu Versátil</h3><p>Mais 1º lugares com tipos de deck diferentes.</p></div>
       </div>
       <p class="lead">Além das premiações de cada evento. Acompanhe no <a href="#ranking">Ranking</a>.</p>
       <h2>Banlist</h2>
