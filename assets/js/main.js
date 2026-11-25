@@ -228,15 +228,21 @@ const PAGES = {
         <p class="lead">Atualizada em ${dataBR(bl.atualizado_em)}.${fonte ? ` Fonte: <a href="${esc(fonte)}" target="_blank" rel="noopener">${esc(fonte)}</a>` : ""}</p>`
       : vazio("Banlist ainda não importada.", "Consulte a lista oficial em gymleaderchallenge.com enquanto ela não é publicada aqui.");
     return interna(`<div><span class="eyebrow">Formato</span><h1>Regras do GLC</h1></div>
-      <p class="lead">A liga segue as regras oficiais do Gym Leader Challenge. Regras locais, quando existirem, aparecem abaixo e prevalecem em caso de conflito.</p>
+      <p class="lead">A liga segue as regras oficiais do Gym Leader Challenge. As regras da liga aparecem abaixo e prevalecem em caso de conflito.</p>
       <div class="rules">
         <div class="rule"><span class="k">60</span><h3>Cartas no deck</h3><p>Uma cópia de cada carta, exceto Energias Básicas.</p></div>
         <div class="rule"><span class="k">1</span><h3>Tipo de Pokémon</h3><p>Todos os Pokémon do deck compartilham o mesmo tipo.</p></div>
         <div class="rule"><span class="k">0</span><h3>Pokémon com Regra</h3><p>Sem Pokémon ex, V, VSTAR, VMAX, GX e similares, e sem cartas ACE SPEC.</p></div>
       </div>
       <a class="btn btn-line" href="https://gymleaderchallenge.com" target="_blank" rel="noopener">Regras completas em gymleaderchallenge.com</a>
-      <h2>Regras locais</h2>
-      ${vazio("Nenhuma regra local publicada.", "Quando a organização definir regras próprias da liga, elas aparecem aqui.")}
+      <h2>Temporada 2027</h2>
+      <div class="rules">
+        <div class="rule"><span class="k">3 · 1 · 0</span><h3>Pontos por partida</h3><p>Vitória 3, empate 1, derrota 0.</p></div>
+        <div class="rule"><span class="k">1º</span><h3>Troféu do Campeão</h3><p>Maior pontuação geral da temporada.</p></div>
+        <div class="rule"><span class="k">2º a 5º</span><h3>Insígnia Elite 4</h3><p>Os 4 seguintes na pontuação geral.</p></div>
+        <div class="rule"><span class="k">Tipo</span><h3>Insígnia de tipo</h3><p>Maior pontuação em cada tipo de deck.</p></div>
+      </div>
+      <p class="lead">Além das premiações de cada evento. Acompanhe no <a href="#ranking">Ranking</a>.</p>
       <h2>Banlist</h2>
       ${banlist}`);
   },
