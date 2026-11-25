@@ -39,6 +39,7 @@ Definidas em 25/11/2026, além das premiações normais de cada evento.
 - Troféu do Campeão: maior pontuação geral da temporada.
 - Insígnia Elite 4: os 4 abaixo do campeão na pontuação geral (2º ao 5º).
 - Insígnia (de tipo): quem pontua melhor em cada tipo de deck.
+- Troféu Versátil (25/11/2026): quem tiver 1º lugares com o maior número de tipos de deck diferentes. Nome provisório.
 
 ## Torneio suíço
 
